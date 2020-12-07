@@ -1,7 +1,6 @@
 $(function () {
   var socket = io();
   var name = $('#name').val() || "Someone";
-
   function updateScroll(){
     var element = document.getElementById("msg");
     element.scrollTop = element.scrollHeight;
@@ -9,7 +8,7 @@ $(function () {
   appendMessage("<center><div>You joined the group chat</div></center>  ")
   socket.emit('new-user', name);
   socket.emit('onlines');
-
+  $('#user').html(`<img src="../public/profile.png" style="width: 5%">| ${name}`);
   $('form').submit(function (e) {
 
     updateScroll();

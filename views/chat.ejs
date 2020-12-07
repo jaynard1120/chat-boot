@@ -15,7 +15,8 @@
 </head>
 
 <body>
-    <a href="/"><button class="btn btn-danger float-right mr-5 mt-3"><i class="fa fa-sign-out"> Disconnect</i></button></a>
+    <a href="/"><button class="btn btn-danger float-right mr-5 mt-3"><i class="fa fa-sign-out">
+                Disconnect</i></button></a>
     <br>
     <div class="main mt-5">
         <input type="hidden" name="enteredName" id="name" value="<%= name %>">
@@ -28,11 +29,13 @@
                     <div id="online">
                     </div>
                 </div>
-                <div class="col">
+                <div class="col" style="margin-top: -4%;">
                     <h2 class="text-center">Welcome to Group Chat</h2>
-                    <div class="you" style="border-radius: 5px;">
-                    <h4 style="padding: 5px;"><i class="fa fa-user"></i> Jaynard</h4>
-                </div>
+                    <hr>
+                    <div  style="border-radius: 5px;height: fit-content;">
+                        <h4 style="padding: 1px;" id="user"></h4>
+                    </div>
+                    <hr>
                     <div class="card-body msg_card_body message-container col" id="msg">
                         <div class="mb-1" style="position: fixed;bottom: 65px;" id="type"></div>
                     </div>
