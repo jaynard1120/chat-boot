@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="../public/nickname.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script src="../public/chatSample.js"></script> -->
+</head>
+<body>
+    <div class="global-container">
+        <div class="card login-form">
+        <div class="card-body">
+          <center><img src="../public/pro.png" alt=""></center>
+            <h3 class="card-title text-center">Set your Nickname</h3>
+            <div class="card-text">
+                <form action="/chat" method="POST">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nick Name:</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="nickname ..." name="nickname" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Join now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

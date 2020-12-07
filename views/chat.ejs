@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Chat Strangers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../public/chat.css">
+    <!-- <link rel="stylesheet" href="../public/nickname.css"> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../public/chatSample.js"></script>
+</head>
+
+<body>
+    <a href="/"><button class="btn btn-danger float-right mr-5 mt-3"><i class="fa fa-sign-out"> Disconnect</i></button></a>
+    <br>
+    <div class="main mt-5">
+        <input type="hidden" name="enteredName" id="name" value="<%= name %>">
+        <div class="container">
+            <div class="row">
+                <div class="col-2 shadow-lg border-right border-top border-bottom"
+                    style="height: 84vh;background-color: #86A8E7"><br>
+                    <h5 class="text-center"><i class="fa fa-users"></i> Active Users</h5>
+                    <hr>
+                    <div id="online">
+                    </div>
+                </div>
+                <div class="col">
+                    <h2 class="text-center">Welcome to Group Chat</h2>
+                    <div class="you" style="border-radius: 5px;">
+                    <h4 style="padding: 5px;"><i class="fa fa-user"></i> Jaynard</h4>
+                </div>
+                    <div class="card-body msg_card_body message-container col" id="msg">
+                        <div class="mb-1" style="position: fixed;bottom: 65px;" id="type"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="/message" id="send-form">
+            <div class="input-group-append">
+                <input class="form-control type_msg" id="m" autocomplete="off" />
+                <button type="submit" style="width: fit-content;cursor: pointer;" class="input-group-text"><i
+                        class="fa fa-location-arrow"></i></button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
