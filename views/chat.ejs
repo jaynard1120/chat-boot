@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../public/chat.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- <link rel="stylesheet" href="../public/nickname.css"> -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -15,8 +16,8 @@
 </head>
 
 <body>
-    <a href="/"><button class="btn btn-danger float-right mr-5 mt-3"><i class="fa fa-sign-out">
-                Disconnect</i></button></a>
+    <button id="out" class="btn btn-danger float-right mr-5 mt-3" ><i class="fa fa-sign-out">
+                Disconnect</i></button>
     <br>
     <div class="main mt-5">
         <input type="hidden" name="enteredName" id="name" value="<%= name %>">
