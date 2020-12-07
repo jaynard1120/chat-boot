@@ -69,24 +69,6 @@ if($('#m').val()!=""){
     
   })
 
-  $('#out').click(()=>{
-    Swal.fire({
-      title: 'Do you want to disconnect?',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: `Yes`,
-      denyButtonText: `Cancel`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log("yes")
-        $('#form').submit(function (e) { 
-         
-        });
-      }
-    })
-  })
-
-
 });
 
 let appendMessage = (tags) => {
