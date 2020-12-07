@@ -6,7 +6,7 @@ app.set('views', "./views")
 app.set('view engine', 'ejs')
 app.use("/public", express.static('public'))
 app.use(express.urlencoded({ extended: true }))
-
+const port = process.env.PORT || 8000
 
 app.get('/', (req, res) => {
   res.render('nickname')
@@ -48,4 +48,4 @@ io.on('connection', (socket) => {
   });
 });
 
-http.listen(8000, () => { console.log("Listening at port 8000") })
+http.listen(port, () => { console.log(`Listening at port ${port}`) })
