@@ -32,7 +32,14 @@ $(function () {
 if($('#m').val()!=""){
     // prevents page reloading
     socket.emit('chat message', $('#m').val());
-    $('.message-container').append(`<div class='d-flex justify-content-end mb-4'><div class='msg_cotainer_send border border-success msg-current'>${$('#m').val()}</div><img src="../public/profile.png" style="width: 50px;"></div>`);
+    $('.message-container')
+    .append(
+      `<div class='d-flex justify-content-end mb-4' >
+        <div class='msg_cotainer_send'>
+        ${$('#m').val()}
+    </div>
+    <img src="../public/profile.png" style="width: 50px;">
+    </div>`);
     $('#m').val('');
     return false;
   }
@@ -45,7 +52,7 @@ if($('#m').val()!=""){
   })
   socket.on('user-typing', (name) => {
     $('#type').empty()
-    $('#type').append(`<p>${name} is typing ...`)
+    $('#type').append(`<p style="color: white">${name} is typing ...`)
   })
   socket.on('chat message', function (data) {
     appendMessage(`<div class='d-flex justify-content-start mb-4 msg-div'><img src="../public/yourProf.png" style="width: 50px;"><div class='msg_cotainer border border-primary msg-current'>${data.name}: ${data.message}</div></div>`);

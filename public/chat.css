@@ -59,7 +59,6 @@
     padding: 10px;
     position: relative;
   }
-
   .msg_cotainer_send {
     margin-top: auto;
     margin-bottom: auto;
@@ -67,7 +66,8 @@
     border-radius: 5px;
     background-color: #78e08f;
     padding: 10px;
-    position: relative;
+    text-align: right;
+    max-width: 70%;
   }
 
   .msg_time {
@@ -104,7 +104,7 @@
   }
 
   .msg_card_body {
-    height: 81%;
+    height: 69vh;
     overflow-y: scroll;
     border: 1px solid white;
     border-bottom: none;
