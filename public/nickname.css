@@ -16,7 +16,9 @@ form{
 	font-size: 14px;
 	margin-top: 30px;
 }
-
+.img_login{
+	width: 70%;
+}
 .card-title{ font-weight:300; }
 
 .btn{

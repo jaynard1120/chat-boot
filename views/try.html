@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Chat Strangers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/chat.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- <link rel="stylesheet" href="../public/nickname.css"> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./public/chatSample.js"></script>
+</head>
+<style>
+    .header {
+        max-height: 100%;
+        min-width: 10%;
+        height: 8%;
+        width: 100%;
+        background: rgb(127, 127, 213, 0.4);
+        font-size: larger;
+    }
+
+    .main {
+        position: relative;
+        margin-top: -1%;
+        background-color: rgb(0, 0, 0, 0.2);
+        margin-left: 5%;
+        min-width: 60%;
+        min-height: 60%;
+        max-width: 98%;
+        width: 85%;
+        max-height: 98%;
+        height: 90vh;
+    }
+
+    #wrapper {
+        padding-left: 250px;
+        transition: all 0.4s ease 0s;
+    }
+
+    #sidebar-wrapper {
+        margin-left: -230px;
+        top: 15px;
+        left: 300px;
+        width: 230px;
+        background: #86A8E7;
+        position: fixed;
+        height: 90%;
+        overflow-y: auto;
+        z-index: 9999;
+        transition: all 0.4s ease 0s;
+        padding-top: 20px;
+    }
+
+    #wrapper.active {
+        padding-left: 0;
+    }
+
+    #wrapper.active #header {
+        padding-left: 0;
+    }
+
+    #wrapper.active #sidebar-wrapper {
+        left: 0;
+    }
+
+    #page-content-wrapper {
+        width: 100%;
+        padding-top: 70px;
+        padding-left: 15px;
+        padding-right: 15px;
+        transition: all 0.4s ease 0s;
+    }
+
+    #menuBtn {
+        margin-top: 21px;
+        display: none;
+    }
+
+    @media (max-width:954px) {
+        #wrapper {
+            padding-left: 0;
+        }
+
+        #sidebar-wrapper {
+            left: 0;
+        }
+
+        #wrapper.active {
+            position: relative;
+            left: 250px;
+        }
+
+        #wrapper.active #sidebar-wrapper {
+            left: 250px;
+            width: 250px;
+            transition: all 0.4s ease 0s;
+        }
+
+        #menuBtn {
+            display: block;
+        }
+    }
+
+    .msg_cotainer {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 10px;
+        /* border-radius: 25px; */
+        background-color: #82ccdd;
+        padding: 10px;
+        position: relative;
+    }
+
+    .title {
+        font-size: 40px;
+    }
+
+    .msg_card_body {
+        height: 68vh;
+        overflow-y: scroll;
+    }
+
+    .msg_cotainer_send {
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 10px;
+        /* border-radius: 25px; */
+        background-color: #78e08f;
+        padding: 10px;
+        position: relative;
+    }
+
+    .msg_time {
+        position: absolute;
+        left: 0;
+        bottom: -15px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 10px;
+    }
+.name{
+    position: absolute;
+        margin-left: 10px;
+        top: -4px;
+        color:black;
+        font-size: 12px;
+        font-weight: bold;
+}
+
+    .msg_time_send {
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 10px;
+    }
+
+    .type_msg {
+        background-color: rgba(0, 0, 0, 0.3);
+        /* border: 1 !important; */
+        color: white !important;
+        height: 60px !important;
+        /* overflow-y: auto; */
+        left: 0;
+        font-size: large;
+    }
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.footer input{
+    height: 10%;
+}
+#menuBtn , #out{
+    z-index: 1;
+}
+</style>
+
+<body>
+
+    <div id="wrapper">
+        <div id="sidebar-wrapper" class="rounded shadow w3-animate-left px-2 pt-2">
+            <div class="mb-2" style="border-bottom: .5px solid white;">
+                <h3 class="text-white"><i class="fa fa-users"></i> Active Users</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <div id="online">
+                    <div style="float: left;"> <img src="./public/online.png" style="width: 40px;float: left;">
+                        <p style="float: left;padding: 10px;font-weight: bold">Jaynard</p>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+        <button id="menuBtn" class="btn rounded-circle float-left"
+            style="position: relative;background-color: transparent;margin-top: 10px;"><img src="./public/online.png"
+                style="width: 40px;float: left;"></button>
+        <button id="out" class="btn btn-danger float-right mr-2 mt-3"><i
+                class="fa fa-power-off">&nbsp;Leave</i></button>
+        <br>
+        <div class="main" id="overlay">
+            <div class="title text-center">
+                OG-Chat
+            </div>
+            <div class="header">
+                <img src="./public/pro.png" style="width: 80px;float: left; padding-left: 30px;">
+                <h4 style="padding: 12px;">Jaynard</h4>
+            </div>
+
+            <div class="card-body msg_card_body message-container col" id="msg">
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        <span class="name">John Paul Vistal ↓</span>
+                        I am looking for your next templates
+                        <span class="msg_time">9:07 AM, Today</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            class="rounded-circle user_img_msg">
+                    </div>
+                    
+                    <div class="msg_cotainer">
+                        <span class="name">Jaynard Senilla ↓</span>
+                        I am looking for your next templates
+                        <span class="msg_time">9:07 AM, Today</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        I am looking for your next templates
+                        <span class="msg_time">9:07 AM, Today</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        I am looking for your next templates
+                        <span class="msg_time">9:07 AM, Today</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        I am looking for your next templates
+                        <span class="msg_time">9:07 AM, Today</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        I am looking for your next templates
+                        <span class="msg_time">9:07 AM, Today</span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        I am looking for your next templates
+                        <span class="msg_time">9:07 AM, Today</span>
+                    </div>
+                </div>
+                
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Ok, thank you have a good day
+                        <span class="msg_time_send">9:10 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Ok, thank you have a good day
+                        <span class="msg_time_send">9:10 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Ok, thank you have a good day
+                        <span class="msg_time_send">9:10 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Ok, thank you have a good day
+                        <span class="msg_time_send">9:10 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Ok, thank you have a good day
+                        <span class="msg_time_send">9:10 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        Ok, thank you have a good day
+                        <span class="msg_time_send">9:10 AM, Today</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+            <form action="/message" id="send-form">
+                <div class="input-group-append">
+                    <input class="form-control type_msg" id="m" autocomplete="off" />
+                    <button type="submit" style="width: fit-content;cursor: pointer;" class="input-group-text"><i
+                            class="fa fa-location-arrow"></i></button>
+                </div>
+            </form>
+        </div>
+        </div>
+        <!-- <input type="hidden" name="enteredName" id="name" value="<%= name %>">
+            <div class="container">
+                <div class="row"> -->
+
+        <!-- <div class="col" style="margin-top: -4%;"> -->
+        <!-- <h2 class="text-center">Welcome to Group Chat</h2> -->
+        <!-- <hr> -->
+        <!-- <div style="border-radius: 5px;height: fit-content;">
+                            <h4 style="padding: 1px;" id="user"></h4>
+                        </div> -->
+        <!-- <hr> -->
+        <!-- <div class="card-body msg_card_body message-container col" id="msg">
+                            <div class="bg-danger  d-flex justify-content-end " style="width: 70%;">
+                                <div class="bg-secondary px-3">
+                                    vfvndfvfdvmfkmvdfmbgfb vdfvdfvfdvkf bgbfbg vfdvfdvdvf bgfbgfbgfbfgbfgb bfgbfgbfgbgfb bfgbgfbgf bfgbfgdvfdvfd vfdvdfvdf vfdvdfv  bfgbfgb bfgbfg dfvdfv dsvchgscvdsgcgdcvdgdgdgdgdgdgdgdgdgdgdggc
+                                </div>
+                            </div>
+                            <img src="./public/profile.png" style="width: 50px;float: left;"> -->
+        <!-- 
+                        <div class='d-flex justify-content-end mb-4'>
+                            <div class='msg_cotainer_send'>
+                                cdscsdcsdcsdcjnerhbfufberufhnerfnjernfjren frnefuhnerfuhbrefhberhbfrgyefveyrfebojhabfh
+                            </div>
+                            <img src="./public/profile.png" style="width: 50px;">
+                        </div>
+
+                        <div class='d-flex justify-content-start mb-4 msg-div'>
+                            <img src="./public/yourProf.png" style="width: 50px;">
+                            <div class='msg_cotainer border border-primary msg-current'>
+                                bgfbgbgbsadaasdasxsafreferfrefvucsdgucvsdgcg dsvchgscvdsgcgdcvdgdgdgdgdgdgdgdgdgdgdggc
+                            </div>
+                        </div> -->
+
+        <!-- <div class="mb-1" style="position: fixed;bottom: 65px; z-index: 1;" id="type"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form action="/message" id="send-form">
+                <div class="input-group-append">
+                    <input class="form-control type_msg" id="m" autocomplete="off" />
+                    <button type="submit" style="width: fit-content;cursor: pointer;" class="input-group-text"><i
+                            class="fa fa-location-arrow"></i></button>
+                </div>
+            </form> -->
+
+        <script>
+            $(function () {
+                $('#menuBtn').click(function () {
+                    alert("Clicked!")
+                    $('#sidebar-wrapper').css('left', '230px')
+                    $('#overlay').css('display', 'block')
+                });
+
+                $('#overlay').click(function () {
+                    checkWidth()
+                    // $('#sidebar-wrapper').css('left', '0px')
+                    // $('#overlay').css('display', 'none')
+                });
+                if ($(window).width() < 954) {
+                    checkWidth()
+                }
+                $(window).resize(checkWidth);
+
+                function checkWidth() {
+                    if ($(window).width() > 954) {
+                        $('#out').html('<i class="fa fa-power-off">&nbsp;Leave</i>')
+                        $('#sidebar-wrapper').css('left', '300px')
+                        $('#overlay').css('margin-top', '-1%')
+                        $('.title').css('font-size', '40px;')
+                        $('#overlay').css('display', 'block')
+
+                    } else {
+                        $('#out').html('<i class="fa fa-power-off"></i>')
+                        $('.title').css('font-size', '30px')
+                        $('#overlay').css('margin-top', '-1%')
+                        $('#sidebar-wrapper').css('left', '0')
+                    }
+                }
+            })
+        </script>
+
+</body>
+
+</html>

@@ -4,28 +4,6 @@
     box-sizing: border-box;
   }
 
-  /* body { font: 13px Helvetica, Arial; } */
-  form {
-    padding: 3px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-
-  form input {
-    border: 0;
-    padding: 10px;
-    width: 90%;
-    margin-right: 0.5%;
-  }
-
-  form button {
-    width: 9%;
-    background: rgb(130, 224, 255);
-    border: none;
-    padding: 10px;
-  }
-
   body,
   html, .you{
     margin: 0;
@@ -39,7 +17,7 @@
     border: 1.5px solid #f5f6fa;
   }
 
-  /* .img_cont {
+  .img_cont {
     position: relative;
     height: 70px;
     width: 70px;
@@ -48,42 +26,6 @@
   .img_cont_msg {
     height: 40px;
     width: 40px;
-  } */
-
-  .msg_cotainer {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 10px;
-    border-radius: 5px;
-    background-color: #82ccdd;
-    padding: 10px;
-    position: relative;
-  }
-  .msg_cotainer_send {
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 20px;
-    border-radius: 5px;
-    background-color: #78e08f;
-    padding: 10px;
-    text-align: right;
-    max-width: 70%;
-  }
-
-  .msg_time {
-    position: absolute;
-    left: 0;
-    bottom: -15px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 10px;
-  }
-
-  .msg_time_send {
-    position: absolute;
-    right: 0;
-    bottom: -15px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 10px;
   }
 
   .msg_head {
@@ -92,24 +34,13 @@
 
   .type_msg {
     background-color: rgba(0, 0, 0, 0.3) !important;
-    border: 1 !important;
     color: white !important;
-    height: 60px !important;
-    overflow-y: auto;
-    font-size: large;
   }
 
   i {
     font-size: xx-large;
   }
 
-  .msg_card_body {
-    height: 69vh;
-    overflow-y: scroll;
-    border: 1px solid white;
-    border-bottom: none;
-    border-top: none;
-  }
 ::-webkit-scrollbar {
 width: 1px;
   background: white;
@@ -121,3 +52,172 @@ width: 1px;
   .input-group-append {
     z-index: 1;
   }
+
+
+  .header {
+    max-height: 100%;
+    min-width: 10%;
+    height: 8%;
+    width: 100%;
+    background: rgb(127, 127, 213, 0.4);
+    font-size: larger;
+}
+
+.main {
+    position: relative;
+    margin-top: -1%;
+    background-color: rgb(0, 0, 0, 0.2);
+    margin-left: 5%;
+    min-width: 60%;
+    min-height: 60%;
+    max-width: 98%;
+    width: 85%;
+    max-height: 98%;
+    height: 90vh;
+}
+
+#wrapper {
+    padding-left: 250px;
+    transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+    margin-left: -230px;
+    top: 15px;
+    left: 300px;
+    width: 230px;
+    background: #86A8E7;
+    position: fixed;
+    height: 90%;
+    overflow-y: auto;
+    z-index: 2;
+    transition: all 0.4s ease 0s;
+    padding-top: 20px;
+}
+
+#wrapper.active {
+    padding-left: 0;
+}
+
+#wrapper.active #header {
+    padding-left: 0;
+}
+
+#wrapper.active #sidebar-wrapper {
+    left: 0;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding-top: 70px;
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: all 0.4s ease 0s;
+}
+
+#menuBtn {
+    margin-top: 21px;
+    display: none;
+}
+
+@media (max-width:954px) {
+    #wrapper {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        left: 0;
+    }
+
+    #wrapper.active {
+        position: relative;
+        left: 250px;
+    }
+
+    #wrapper.active #sidebar-wrapper {
+        left: 250px;
+        width: 250px;
+        transition: all 0.4s ease 0s;
+    }
+
+    #menuBtn {
+        display: block;
+    }
+}
+
+.msg_cotainer {
+    min-width: 15%;
+    max-width: 90%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: #82ccdd;
+    padding: 10px;
+    position: relative;
+}
+
+.title {
+    font-size: 40px;
+}
+
+.msg_card_body {
+    height: 68vh;
+    overflow-y: scroll;
+}
+
+.msg_cotainer_send {
+  text-align: right;
+    min-width: 15%;
+    max-width: 90%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #78e08f;
+    padding: 10px;
+    position: relative;
+}
+
+.msg_time {
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+}
+
+.msg_time_send {
+  position: absolute;
+  right: 0;
+  bottom: -15px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+}
+
+.type_msg {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white !important;
+    height: 60px !important;
+    left: 0;
+    font-size: large;
+}
+.footer{
+position: absolute;
+bottom: 0;
+width: 100%;
+}
+.footer input{
+height: 10%;
+}
+#menuBtn , #out{
+z-index: 1;
+}
+
+.name{
+    position: absolute;
+    top: -4px;
+    color:black;
+    font-size: 12px;
+    font-weight: bold;
+}
