@@ -7,7 +7,7 @@
     <title>Welcome to Chat Strangers</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./public/chat.css">
+    <!-- <link rel="stylesheet" href="../public/chat.css"> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- <link rel="stylesheet" href="../public/nickname.css"> -->
     <script src="/socket.io/socket.io.js"></script>
@@ -15,6 +15,12 @@
     <script src="./public/chatSample.js"></script>
 </head>
 <style>
+      body,
+  html, .you{
+    margin: 0;
+    background: #7F7FD5;
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+  }
     .header {
         max-height: 100%;
         min-width: 10%;
@@ -55,6 +61,22 @@
         transition: all 0.4s ease 0s;
         padding-top: 20px;
     }
+    .user_img_msg {
+    height: 40px;
+    width: 40px;
+    border: 1.5px solid #f5f6fa;
+  }
+
+  .img_cont {
+    position: relative;
+    height: 70px;
+    width: 70px;
+  }
+
+  .img_cont_msg {
+    height: 40px;
+    width: 40px;
+  }
 
     #wrapper.active {
         padding-left: 0;
@@ -154,7 +176,6 @@
     .msg_time_send {
         position: absolute;
         right: 0;
-        bottom: -15px;
         color: rgba(255, 255, 255, 0.5);
         font-size: 10px;
     }
@@ -294,13 +315,26 @@
                 </div>
                 
 
+                <div class="d-flex justify-content-end mb-4 bg-danger" style="height: fit-content;position: relative;">
+                    <div class="msg_cotainer_send">
+                        Ok, thank you have a good day
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="../public/pro.png" class="rounded-circle user_img_msg">
+                        <div class="bg-warning" style="position: absolute;margin-left: -13%;">
+                        <span class="msg_time_send" style="margin-top: 5%;">9:10 AM, Today</span>
+                    </div>
+                    </div>
+                    <!-- <span style="font-size: xx-small;float: right;margin-top: 10%;">Jaynard Senilla</span> -->
+                </div>
+
                 <div class="d-flex justify-content-end mb-4">
                     <div class="msg_cotainer_send">
                         Ok, thank you have a good day
                         <span class="msg_time_send">9:10 AM, Today</span>
                     </div>
                     <div class="img_cont_msg">
-                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                        <img src="../public/pro.png" class="rounded-circle user_img_msg">
                     </div>
                 </div>
 
@@ -310,7 +344,7 @@
                         <span class="msg_time_send">9:10 AM, Today</span>
                     </div>
                     <div class="img_cont_msg">
-                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                        <img src="../public/pro.png" class="rounded-circle user_img_msg">
                     </div>
                 </div>
 
@@ -320,7 +354,7 @@
                         <span class="msg_time_send">9:10 AM, Today</span>
                     </div>
                     <div class="img_cont_msg">
-                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                        <img src="../public/pro.png" class="rounded-circle user_img_msg">
                     </div>
                 </div>
 
@@ -330,7 +364,7 @@
                         <span class="msg_time_send">9:10 AM, Today</span>
                     </div>
                     <div class="img_cont_msg">
-                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                        <img src="../public/pro.png" class="rounded-circle user_img_msg">
                     </div>
                 </div>
 
@@ -340,17 +374,7 @@
                         <span class="msg_time_send">9:10 AM, Today</span>
                     </div>
                     <div class="img_cont_msg">
-                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end mb-4">
-                    <div class="msg_cotainer_send">
-                        Ok, thank you have a good day
-                        <span class="msg_time_send">9:10 AM, Today</span>
-                    </div>
-                    <div class="img_cont_msg">
-                        <img src="./public/pro.png" class="rounded-circle user_img_msg">
+                        <img src="../public/pro.png" class="rounded-circle user_img_msg">
                     </div>
                 </div>
             </div>

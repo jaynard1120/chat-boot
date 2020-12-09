@@ -21,8 +21,8 @@ const users = {}
 
 io.on('connection', (socket) => {
   socket.on('new-user', name => {
-    users[socket.id] = name;
-    socket.broadcast.emit('user-connected', { name: users[socket.id], online: [...online] })
+    users[socket.nickname] = name;
+    socket.broadcast.emit('user-connected', { name: users[socket.nickname], online: [...online] })
   })
 
   socket.on('onlines', ()=>{
@@ -42,9 +42,9 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    online.splice(online.indexOf(users[socket.id]),1)
-    socket.broadcast.emit('user-disconnected', { user: users[socket.id], online: [...online] });
-    delete users[socket.id]
+    online.splice(online.indexOf(users[socket.nickname]),1)
+    socket.broadcast.emit('user-disconnected', { user: users[socket.nickname], online: [...online] });
+    delete users[socket.nickname]
   });
 });
 

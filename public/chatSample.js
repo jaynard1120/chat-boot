@@ -40,7 +40,7 @@ $(function () {
           ` <div class="d-flex justify-content-end mb-4">
           <div class="msg_cotainer_send">
           &nbsp; ${$('#m').val()}
-          <span class="msg_time_send">${date.getHours()}:${date.getMinutes()}: ${weekday}</span>
+          <span class="msg_time_send">${checkDate(date.getHours(),date.getMinutes())}  ${weekday}</span>
           </div>
           <div class="img_cont_msg">
           <img src="./public/pro.png" class="rounded-circle user_img_msg">
@@ -74,7 +74,7 @@ $(function () {
                     <div class="msg_cotainer">
                         <span class="name">${data.name} ↓</span>&nbsp;
                         ${data.message}
-                        <span class="msg_time">${date.getHours()}:${date.getMinutes()}: ${weekday}</span>
+                        <span class="msg_time">${checkDate(date.getHours(),date.getMinutes())}: ${weekday}</span>
                     </div>
                 </div>
           `);
@@ -90,7 +90,7 @@ $(function () {
     user.online.filter(element=>{
       return element != name;
     }).map(userOn=>{
-          $('#online').append(`<div style="float: left;"> <img src="../public/online.png" style="width: 40px;float: left;"><p style="float: left;padding: 10px;font-weight: bold">${userOn}</p></div>`)
+          $('#online').append(`<div" style="float:left" id="pm"> <img src="../public/online.png" style="width: 40px;float: left;"><p style="float: left;padding: 10px;font-weight: bold">${userOn}</p></div><br>`)
         })
   })
   socket.on('onlines',users=>{
@@ -98,7 +98,7 @@ $(function () {
     users.nicknames.filter(element=>{
       return element != name;
     }).map(userOn=>{
-          $('#online').append(`<div style="float: left;"> <img src="../public/online.png" style="width: 40px;float: left;"><p style="float: left;padding: 10px;font-weight: bold">${userOn}</p></div>`)
+          $('#online').append(`<div style="float:left" id="pm"> <img src="../public/online.png" style="width: 40px;float: left;"><p style="float: left;padding: 10px;font-weight: bold">${userOn}</p></div><br>`)
         })
   })
 
@@ -108,7 +108,7 @@ $(function () {
     user.online.filter(element=>{
       return element != name;
     }).map(userOn=>{
-          $('#online').append(`<div style="float: left;"> <img src="../public/online.png" style="width: 40px;float: left;"><p style="float: left;padding: 10px;font-weight: bold">${userOn}</p></div>`)
+          $('#online').append(`<div style="float:left" id="pm"> <img src="../public/online.png" style="width: 40px;float: left;"><p style="float: left;padding: 10px;font-weight: bold">${userOn}</p></div><br>`)
         })
   })
 
@@ -144,12 +144,12 @@ function checkWidth() {
     }
 }
 
-function checkDate(date,day){
+function checkDate(hour, minutes){
   
-  if(date>12){
-    return "PM"
+  if(hour>12){
+    return hour-12+":"+minutes+", PM"
   }else{
-    return "AM"
+    return hour+":"+minutes+", AM"
   }
 }
 

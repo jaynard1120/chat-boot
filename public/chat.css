@@ -146,15 +146,17 @@ width: 1px;
 }
 
 .msg_cotainer {
-    min-width: 15%;
-    max-width: 90%;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 10px;
-    border-radius: 5px;
-    background-color: #82ccdd;
-    padding: 10px;
-    position: relative;
+  /* font-size: 2%; */
+  word-break: break-word;
+  min-width: 15%;
+  max-width: 70%;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #82ccdd;
+  padding: 10px;
+  position: relative;
 }
 
 .title {
@@ -167,16 +169,18 @@ width: 1px;
 }
 
 .msg_cotainer_send {
+  /* font-size: 2%; */
+  word-break: break-word;
   text-align: right;
-    min-width: 15%;
-    max-width: 90%;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 10px;
-    border-radius: 5px;
-    background-color: #78e08f;
-    padding: 10px;
-    position: relative;
+  min-width: 15%;
+  max-width: 70%;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #78e08f;
+  padding: 10px;
+  position: relative;
 }
 
 .msg_time {
@@ -210,14 +214,21 @@ width: 100%;
 .footer input{
 height: 10%;
 }
-#menuBtn , #out{
-z-index: 1;
+#menuBtn{
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
-
+#out{
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+}
 .name{
     position: absolute;
     top: -4px;
     color:black;
-    font-size: 12px;
+    font-size: 50%;
     font-weight: bold;
 }
