@@ -40,11 +40,11 @@ $(function () {
           ` <div class="d-flex justify-content-end mb-4">
           <div class="msg_cotainer_send">
           &nbsp; ${$('#m').val()}
-          <span class="msg_time_send">${checkDate(date.getHours(),date.getMinutes())}  ${weekday}</span>
           </div>
           <div class="img_cont_msg">
           <img src="./public/pro.png" class="rounded-circle user_img_msg">
           </div>
+          <span class="msg_time_send">${checkDate(date.getHours(),date.getMinutes())}  ${weekday}</span>
           </div>`);
   
       $('#m').val('');
@@ -66,16 +66,17 @@ $(function () {
 
   socket.on('chat message', function (data) {
           appendMessage(`
+          <br>
                 <div class="d-flex justify-content-start mb-4">
                     <div class="img_cont_msg">
-                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                        <img src="../public/prof.png"
                             class="rounded-circle user_img_msg">
                     </div>
+                    <span class="name">${data.name}</span>&nbsp;
                     <div class="msg_cotainer">
-                        <span class="name">${data.name} ↓</span>&nbsp;
                         ${data.message}
+                        </div>
                         <span class="msg_time">${checkDate(date.getHours(),date.getMinutes())}: ${weekday}</span>
-                    </div>
                 </div>
           `);
     updateScroll();

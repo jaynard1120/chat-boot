@@ -159,15 +159,15 @@
 
     .msg_time {
         position: absolute;
-        left: 0;
+        left: 50px;
         bottom: -15px;
         color: rgba(255, 255, 255, 0.5);
         font-size: 10px;
     }
 .name{
     position: absolute;
-        margin-left: 10px;
-        top: -4px;
+        margin-left: 50px;
+        top: -17px;
         color:black;
         font-size: 12px;
         font-weight: bold;
@@ -175,7 +175,8 @@
 
     .msg_time_send {
         position: absolute;
-        right: 0;
+        right: 50px;
+        bottom: -15px;
         color: rgba(255, 255, 255, 0.5);
         font-size: 10px;
     }
@@ -199,6 +200,12 @@
 }
 #menuBtn , #out{
     z-index: 1;
+}
+.d-flex{
+    position: relative;
+}
+.send{
+    position: relative;
 }
 </style>
 
@@ -238,12 +245,13 @@
                     <div class="img_cont_msg">
                         <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
                             class="rounded-circle user_img_msg">
-                    </div>
+                    </div
+                    ><span class="name">John Paul Vistal ↓</span>
                     <div class="msg_cotainer">
-                        <span class="name">John Paul Vistal ↓</span>
-                        I am looking for your next templates
-                        <span class="msg_time">9:07 AM, Today</span>
+                        
+                        I
                     </div>
+                    <span class="msg_time">9:07 AM, Today</span>
                 </div>
 
                 <div class="d-flex justify-content-start mb-4">
@@ -252,11 +260,11 @@
                             class="rounded-circle user_img_msg">
                     </div>
                     
+                    <span class="name">Jaynard Senilla ↓</span>
                     <div class="msg_cotainer">
-                        <span class="name">Jaynard Senilla ↓</span>
                         I am looking for your next templates
-                        <span class="msg_time">9:07 AM, Today</span>
                     </div>
+                    <span class="msg_time">9:07 AM, Today</span>
                 </div>
 
                 <div class="d-flex justify-content-start mb-4">
@@ -277,8 +285,8 @@
                     </div>
                     <div class="msg_cotainer">
                         I am looking for your next templates
-                        <span class="msg_time">9:07 AM, Today</span>
                     </div>
+                    <span class="msg_time">9:07 AM, Today</span>
                 </div>
 
                 <div class="d-flex justify-content-start mb-4">
@@ -315,16 +323,16 @@
                 </div>
                 
 
-                <div class="d-flex justify-content-end mb-4 bg-danger" style="height: fit-content;position: relative;">
+                <div class="d-flex send justify-content-end mb-4" style="height: fit-content;position: relative;">
                     <div class="msg_cotainer_send">
-                        Ok, thank you have a good day
+                        Ok thank you have a good day
                     </div>
                     <div class="img_cont_msg">
                         <img src="../public/pro.png" class="rounded-circle user_img_msg">
                         <div class="bg-warning" style="position: absolute;margin-left: -13%;">
-                        <span class="msg_time_send" style="margin-top: 5%;">9:10 AM, Today</span>
+                        </div>
                     </div>
-                    </div>
+                    <span class="msg_time_send" style="margin-top: 17%;">9:10 AM, Today</span>
                     <!-- <span style="font-size: xx-small;float: right;margin-top: 10%;">Jaynard Senilla</span> -->
                 </div>
 
@@ -341,8 +349,8 @@
                 <div class="d-flex justify-content-end mb-4">
                     <div class="msg_cotainer_send">
                         Ok, thank you have a good day
-                        <span class="msg_time_send">9:10 AM, Today</span>
                     </div>
+                    <span class="msg_time_send">9:10 AM, Today</span>
                     <div class="img_cont_msg">
                         <img src="../public/pro.png" class="rounded-circle user_img_msg">
                     </div>
